@@ -4,3 +4,6 @@
 [submodule "lib/forge-std"]
 	branch = v1.2.0
 	
+[submodule "contracts/lib/solmate"]
+	path = contracts/lib/solmate
+	url = https://github.com/transmissions11/solmate
