@@ -50,3 +50,5 @@ next-env.d.ts
 
 out
 cache
+
+src/generated.ts
