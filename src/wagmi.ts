@@ -1,7 +1,6 @@
 import { configureChains, createConfig } from "wagmi";
-import { foundry, optimism, optimismGoerli } from "wagmi/chains";
+import { foundry, goerli, optimismGoerli } from "wagmi/chains";
 import { jsonRpcProvider } from "wagmi/providers/jsonRpc";
-// import { alchemyProvider } from "wagmi/providers/alchemy";
 import { getDefaultWallets } from "@rainbow-me/rainbowkit";
 
 /**
@@ -10,13 +9,8 @@ import { getDefaultWallets } from "@rainbow-me/rainbowkit";
  * @see https://wagmi.sh/react/providers/configuring-chains
  */
 const { chains, publicClient } = configureChains(
-  [optimism, optimismGoerli, foundry],
+  [goerli, optimismGoerli, foundry],
   [
-    /**
-     * Uncomment this line to use Alchemy as your provider
-     * @see https://wagmi.sh/react/providers/alchemy
-     */
-    // alchemyProvider({ apiKey: import.meta.env.VITE_ALCHEMY_API_KEY! }),
     /**
      * Tells wagmi to use the default RPC URL for each chain
      * for some dapps the higher rate limits of Alchemy may be required
@@ -25,6 +19,15 @@ const { chains, publicClient } = configureChains(
       rpc: (chain) => {
         if (chain.id === foundry.id) {
           return { http: "http://localhost:8545" };
+        }
+        if (chain.id === goerli.id && import.meta.env.VITE_RPC_URL_GOERLI) {
+          return { http: import.meta.env.VITE_RPC_URL_GOERLI };
+        }
+        if (
+          chain.id === optimismGoerli.id &&
+          import.meta.env.VITE_RPC_URL_OP_GOERLI
+        ) {
+          return { http: import.meta.env.VITE_RPC_URL_OP_GOERLI };
         }
         return { http: chain.rpcUrls.default.http[0] };
       },

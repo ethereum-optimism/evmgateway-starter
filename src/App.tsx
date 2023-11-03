@@ -1,7 +1,11 @@
 import { ConnectButton } from "@rainbow-me/rainbowkit";
 import { useAccount } from "wagmi";
+import { ThemeProvider } from "styled-components";
+import { Heading, ThorinGlobalStyles, lightTheme } from "@ensdomains/thorin";
+import { L1Panel } from "./components/L1Panel";
+import { L2Panel } from "./components/L2Panel";
 
-import { Attestooooooor } from "./components";
+import "./App.css";
 
 export function App() {
   /**
@@ -11,19 +15,36 @@ export function App() {
   const { isConnected } = useAccount();
 
   return (
-    <>
-      <h1>OP Starter Project</h1>
-
-      {/** @see https://www.rainbowkit.com/docs/connect-button */}
-      <ConnectButton />
-
-      {isConnected && (
-        <>
-          <hr />
-          <Attestooooooor />
-          <hr />
-        </>
-      )}
-    </>
+    <ThemeProvider theme={lightTheme}>
+      <ThorinGlobalStyles />
+      <div
+        style={{
+          padding: 20,
+          height: "100%",
+          display: "flex",
+          flexDirection: "column",
+          gap: 20,
+        }}
+      >
+        <div style={{ display: "flex", justifyContent: "center" }}>
+          <Heading>OP Goerli Passport using EVMGateway</Heading>
+        </div>
+        <div style={{ display: "flex", justifyContent: "center" }}>
+          <ConnectButton />
+        </div>
+        {isConnected && (
+          <div
+            style={{
+              flex: 1,
+              display: "flex",
+              gap: 20,
+            }}
+          >
+            <L1Panel />
+            <L2Panel />
+          </div>
+        )}
+      </div>
+    </ThemeProvider>
   );
 }
