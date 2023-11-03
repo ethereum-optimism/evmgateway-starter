@@ -41,6 +41,12 @@ export function App() {
             }}
           >
             <L1Panel />
+            <div
+              style={{
+                width: 1,
+                backgroundColor: "#e0e0e0",
+              }}
+            />
             <L2Panel />
           </div>
         )}

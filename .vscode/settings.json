@@ -12,5 +12,7 @@
   "[typescript]": {
     "editor.defaultFormatter": "esbenp.prettier-vscode"
   },
-  "files.trimTrailingWhitespace": true
+  "files.trimTrailingWhitespace": true,
+  "solidity.compileUsingRemoteVersion": "v0.8.17+commit.8df45f5f",
+  "prettier.configPath": ".prettierrc.json"
 }

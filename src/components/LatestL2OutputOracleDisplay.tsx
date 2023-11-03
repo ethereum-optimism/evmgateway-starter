@@ -1,12 +1,7 @@
-import {
-  useBlockNumber,
-  useContractEvent,
-  useContractRead,
-  useContractReads,
-} from "wagmi";
+import { useBlockNumber, useContractEvent, useContractRead } from "wagmi";
 import { L2OutputOracleAbi } from "../constants/L2OutputOracleAbi";
 import { goerli, optimismGoerli } from "wagmi/chains";
-import { Banner } from "@ensdomains/thorin";
+import { Banner, Spinner } from "@ensdomains/thorin";
 import { useState } from "react";
 
 const LastUpdatedAt = ({ date }: { date?: Date }) => {
@@ -14,7 +9,7 @@ const LastUpdatedAt = ({ date }: { date?: Date }) => {
     return null;
   }
 
-  return <div>last updated {date.toLocaleTimeString()}</div>;
+  return <div>last submitted at {date.toLocaleTimeString()}</div>;
 };
 
 const LatestL2OutputOracleContent = () => {
@@ -65,10 +60,11 @@ const LatestL2OutputOracleContent = () => {
   const numBlocksBehind = latestL2Block - latestL2BlockOnL1;
 
   return (
-    <div>
+    <div style={{ display: "flex", alignItems: "center", gap: 8 }}>
+      <Spinner />
       {latestL2BlockOnL1.toString()} ({numBlocksBehind.toString()} blocks
       behind)
-      <LastUpdatedAt date={latestL2OutputProposedDate} />
+      {/* <LastUpdatedAt date={latestL2OutputProposedDate} /> */}
     </div>
   );
 };

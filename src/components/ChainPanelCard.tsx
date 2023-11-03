@@ -12,10 +12,11 @@ export const ChainPanelCard = ({
   style?: React.CSSProperties;
 }) => {
   return (
-    <Card
+    <div
       style={{
         display: "flex",
         flexDirection: "column",
+        gap: 16,
         ...style,
       }}
     >
@@ -30,6 +31,6 @@ export const ChainPanelCard = ({
         <NetworkConnectedTag chainId={chain.id} />
       </div>
       {children}
-    </Card>
+    </div>
   );
 };

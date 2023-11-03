@@ -10,7 +10,7 @@
     "deploy:L1PassportNFT": "source .env && forge create contracts/src/L1PassportNFT.sol:L1PassportNFT --rpc-url $FORGE_RPC_URL_GOERLI -i --etherscan-api-key $ETHERSCAN_API_KEY_GOERLI --verify --constructor-args \"L1 Passport NFT\" \"L1PASSPORT\" $OP_VERIFIER_CONTRACT_ADDRESS 0x5a81f1f4d30f4153150848c31fabd0311946ed72 0x22299910e573ecd436f4987c75f093894904d107",
     "deploy": "source .env && forge create contracts/src/Counter.sol:Counter --rpc-url $FORGE_RPC_URL --private-key $FORGE_PRIVATE_KEY --etherscan-api-key $ETHERSCAN_API_KEY --verify",
     "deploy:anvil": "source .env && forge create contracts/src/AttestationStation.sol:AttestationStation --rpc-url http://127.0.0.1:8545 --private-key 0xac0974bec39a17e36ba4a6b4d238ff944bacb478cbed5efcae784d7bf4f2ff80 --legacy",
-    "dev": "vite --cors",
+    "dev": "vite",
     "dev:foundry": "npm run dev & wagmi generate --watch & npm run anvil",
     "build": "npm run wagmi && vite build",
     "build:production": "vite build",
