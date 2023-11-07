@@ -4,6 +4,7 @@ import {
   useAccount,
   useContractReads,
   useContractWrite,
+  useNetwork,
   usePrepareContractWrite,
   useWaitForTransaction,
 } from "wagmi";
@@ -11,6 +12,7 @@ import { L2TestCoinAbi } from "../constants/L2TestCoinAbi";
 import { useState } from "react";
 import { TransactionReceipt } from "viem";
 import { L2TransactionList } from "./L2TransactionList";
+import { SwitchNetworkButton } from "./SwitchNetworkButton";
 
 const MintCoinButton = ({
   onSuccess,
@@ -41,6 +43,11 @@ const MintCoinButton = ({
       },
     },
   );
+
+  const { chain } = useNetwork();
+  if (chain?.id !== optimismGoerli.id) {
+    return <SwitchNetworkButton chain={optimismGoerli} />;
+  }
 
   const isDisabled =
     !write || isTransactionSendLoading || isTransactionConfirmationLoading;

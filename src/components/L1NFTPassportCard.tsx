@@ -5,6 +5,7 @@ import {
   useContractEvent,
   useContractRead,
   useContractWrite,
+  useNetwork,
   usePrepareContractWrite,
   useWaitForTransaction,
 } from "wagmi";
@@ -13,6 +14,7 @@ import { L1PassportNFTAbi } from "../constants/L1PassportNFTAbi";
 import { L1NFTPassportViewer } from "./L1NFTPassportViewer";
 import { hexToBigInt } from "viem";
 import { L2OutputOracleAbi } from "../constants/L2OutputOracleAbi";
+import { SwitchNetworkButton } from "./SwitchNetworkButton";
 
 const MintL1PassportNFTButton = ({ onSuccess }: { onSuccess: () => void }) => {
   const { address } = useAccount();
@@ -39,6 +41,11 @@ const MintL1PassportNFTButton = ({ onSuccess }: { onSuccess: () => void }) => {
       },
     },
   );
+
+  const { chain } = useNetwork();
+  if (chain?.id !== goerli.id) {
+    return <SwitchNetworkButton chain={goerli} />;
+  }
 
   const isDisabled =
     !write || isTransactionSendLoading || isTransactionConfirmationLoading;
