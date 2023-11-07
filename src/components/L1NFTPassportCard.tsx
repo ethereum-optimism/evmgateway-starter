@@ -94,6 +94,7 @@ export const L1NFTPassportCard = () => {
   const {
     data: tokenUri,
     isFetching,
+    isLoading,
     refetch: refetchTokenUri,
   } = useContractRead({
     address: "0x0e24f4af1d5cd7fac0a96649511a15439d7e0c04",
@@ -155,7 +156,7 @@ export const L1NFTPassportCard = () => {
               alignItems: "center",
             }}
           >
-            {isFetching && "Refetching..."}
+            {(isFetching || isLoading) && "Refetching..."}
           </div>
         </div>
       )}
