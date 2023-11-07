@@ -11,10 +11,11 @@ import { EVMFetcher } from './evm-verifier/EVMFetcher.sol';
 contract L1PassportNFT is ERC721, EVMFetchTarget {
   using EVMFetcher for EVMFetcher.EVMFetchRequest;
 
+  error TokenIsSoulbound();
+
   string public constant SVG_PREFIX = '<svg width="400" height="400" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMinYMin meet" viewBox="0 0 400 400"><style>.text { fill: white; font-family: monospace }</style><rect width="100%" height="100%" fill="#ea3431" ry="20" rx="20"/><text class="text" font-weight="bold" dominant-baseline="middle" text-anchor="middle" font-family="monospace" font-size="32" y="15%" x="50%">OP Goerli Passport</text>';
 
   IEVMVerifier public verifier;
-  uint256 public currentTokenId;
   address public l2TestCoinAddress;
   address public l2TestNFTAddress;
 
@@ -25,7 +26,7 @@ contract L1PassportNFT is ERC721, EVMFetchTarget {
   }
 
   function mintTo(address _to) public returns (uint256) {
-    uint256 newTokenId = currentTokenId++;
+    uint256 newTokenId = uint256(uint160(_to));
     _safeMint(_to, newTokenId);
     return newTokenId;
   }
@@ -64,6 +65,18 @@ contract L1PassportNFT is ERC721, EVMFetchTarget {
     return _getTokenUri(tokenId, tokenOwner, l2TestCoinTotalSupply, l2TestCoinBalance, l2NftBalance);
   }
 
+  // Simple souldbound NFT implementation from https://github.com/The-Arbiter/ERC721Soulbound
+  function onlySoulbound(address from, address to) internal pure {
+    // Revert if transfers are not from the 0 address and not to the 0 address
+    if (from != address(0) && to != address(0)) {
+        revert TokenIsSoulbound();
+    }
+  }
+
+  function transferFrom(address from, address to, uint256 id) public override {
+    onlySoulbound(from, to);
+    super.transferFrom(from, to, id);
+  }
 
   function _getTokenUri(
     uint256 _tokenId,

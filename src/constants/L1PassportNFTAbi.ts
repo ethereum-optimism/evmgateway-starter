@@ -83,6 +83,11 @@ export const L1PassportNFTAbi = [
     type: "error",
   },
   {
+    inputs: [],
+    name: "TokenIsSoulbound",
+    type: "error",
+  },
+  {
     inputs: [
       {
         internalType: "uint256",
@@ -208,19 +213,6 @@ export const L1PassportNFTAbi = [
       },
     ],
     name: "balanceOf",
-    outputs: [
-      {
-        internalType: "uint256",
-        name: "",
-        type: "uint256",
-      },
-    ],
-    stateMutability: "view",
-    type: "function",
-  },
-  {
-    inputs: [],
-    name: "currentTokenId",
     outputs: [
       {
         internalType: "uint256",

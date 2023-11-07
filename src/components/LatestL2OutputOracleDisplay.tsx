@@ -1,8 +1,8 @@
-import { useBlockNumber, useContractEvent, useContractRead } from "wagmi";
-import { L2OutputOracleAbi } from "../constants/L2OutputOracleAbi";
+import { useBlockNumber } from "wagmi";
 import { goerli, optimismGoerli } from "wagmi/chains";
 import { Banner, Spinner } from "@ensdomains/thorin";
 import { useState } from "react";
+import { useLatestAvailableL2BlockNumberOnL1 } from "../lib/useLatestAvailableL2BlockNumberOnL1";
 
 const LastUpdatedAt = ({ date }: { date?: Date }) => {
   if (!date) {
@@ -22,31 +22,14 @@ const LatestL2OutputOracleContent = () => {
       chainId: optimismGoerli.id,
     });
 
-  const {
-    data: latestL2BlockOnL1,
-    isLoading: isLatestL2BlockOnL1Loading,
-    refetch,
-  } = useContractRead({
-    abi: L2OutputOracleAbi,
-    address: "0xE6Dfba0953616Bacab0c9A8ecb3a9BBa77FC15c0",
-    functionName: "latestBlockNumber",
-    chainId: goerli.id,
-  });
-
-  useContractEvent({
-    abi: L2OutputOracleAbi,
-    address: "0xE6Dfba0953616Bacab0c9A8ecb3a9BBa77FC15c0",
-    eventName: "OutputProposed",
-    chainId: goerli.id,
-    listener: (events) => {
-      events[0].args.l1Timestamp;
-      setLatestL2OutputProposedDate(
-        new Date(Number(events[0].args.l1Timestamp) * 1000),
-      );
-      // refetch the L2OutputOracle data when a new output is proposed
-      refetch();
-    },
-  });
+  const { data: latestL2BlockOnL1, isLoading: isLatestL2BlockOnL1Loading } =
+    useLatestAvailableL2BlockNumberOnL1((latestL1Timestamp) => {
+      if (latestL1Timestamp) {
+        setLatestL2OutputProposedDate(
+          new Date(Number(latestL1Timestamp) * 1000),
+        );
+      }
+    });
 
   if (
     !latestL2BlockOnL1 ||

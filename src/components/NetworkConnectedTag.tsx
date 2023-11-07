@@ -1,16 +1,27 @@
-import { Tag } from "@ensdomains/thorin";
-import { useNetwork } from "wagmi";
+import { Button, Tag } from "@ensdomains/thorin";
+import { useNetwork, useSwitchNetwork } from "wagmi";
 
 export const NetworkConnectedTag = ({ chainId }: { chainId: number }) => {
   const { chain } = useNetwork();
+  const { switchNetwork } = useSwitchNetwork();
 
   if (!chain || chain.id !== chainId) {
-    return null;
+    return (
+      <Button
+        shape="rounded"
+        width="36"
+        size="small"
+        disabled={!switchNetwork}
+        onClick={() => switchNetwork?.(chainId)}
+      >
+        Switch network
+      </Button>
+    );
   }
 
   return (
     <Tag size="medium" colorStyle="greenPrimary">
-      Connected to wallet
+      Network connected to wallet
     </Tag>
   );
 };

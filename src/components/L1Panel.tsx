@@ -1,11 +1,11 @@
-import { Viewer } from "./Viewer";
 import { goerli } from "wagmi/chains";
-import { ChainPanelCard } from "./ChainPanelCard";
+import { ChainPanel } from "./ChainPanel";
 import { LatestL2OutputOracleDisplay } from "./LatestL2OutputOracleDisplay";
+import { L1NFTPassportCard } from "./L1NFTPassportCard";
 
 export const L1Panel = () => {
   return (
-    <ChainPanelCard
+    <ChainPanel
       chain={goerli}
       style={{
         flex: 1,
@@ -14,7 +14,8 @@ export const L1Panel = () => {
       }}
     >
       <LatestL2OutputOracleDisplay />
-      <Viewer />
-    </ChainPanelCard>
+      <div style={{ height: 1, backgroundColor: "#e0e0e0" }} />
+      <L1NFTPassportCard />
+    </ChainPanel>
   );
 };

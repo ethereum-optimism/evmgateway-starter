@@ -1,8 +1,8 @@
-import { Card, Heading } from "@ensdomains/thorin";
+import { Heading } from "@ensdomains/thorin";
 import { Chain } from "wagmi";
 import { NetworkConnectedTag } from "./NetworkConnectedTag";
 
-export const ChainPanelCard = ({
+export const ChainPanel = ({
   chain,
   children,
   style = {},
