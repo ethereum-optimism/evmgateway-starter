@@ -21,7 +21,7 @@ const MintCoinButton = ({
 }) => {
   const { address } = useAccount();
   const { config } = usePrepareContractWrite({
-    address: "0x5a81f1f4d30f4153150848c31fabd0311946ed72",
+    address: import.meta.env.VITE_L2TESTCOIN_CONTRACT_ADDRESS_OP_GOERLI,
     abi: L2TestCoinAbi,
     chainId: optimismGoerli.id,
     functionName: "mintTo",
@@ -81,14 +81,14 @@ export const L2TestCoinCard = () => {
     contracts: [
       {
         abi: L2TestCoinAbi,
-        address: "0x5a81f1f4d30f4153150848c31fabd0311946ed72",
+        address: import.meta.env.VITE_L2TESTCOIN_CONTRACT_ADDRESS_OP_GOERLI,
         functionName: "balanceOf",
         args: [address!],
         chainId: optimismGoerli.id,
       },
       {
         abi: L2TestCoinAbi,
-        address: "0x5a81f1f4d30f4153150848c31fabd0311946ed72",
+        address: import.meta.env.VITE_L2TESTCOIN_CONTRACT_ADDRESS_OP_GOERLI,
         functionName: "totalSupply",
         chainId: optimismGoerli.id,
       },

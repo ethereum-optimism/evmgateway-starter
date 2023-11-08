@@ -19,7 +19,7 @@ import { SwitchNetworkButton } from "./SwitchNetworkButton";
 const MintL1PassportNFTButton = ({ onSuccess }: { onSuccess: () => void }) => {
   const { address } = useAccount();
   const { config } = usePrepareContractWrite({
-    address: "0x0e24f4af1d5cd7fac0a96649511a15439d7e0c04",
+    address: import.meta.env.VITE_L1PASSPORTNFT_CONTRACT_ADDRESS_GOERLI,
     abi: L1PassportNFTAbi,
     chainId: goerli.id,
     functionName: "mintTo",
@@ -90,7 +90,7 @@ export const L1NFTPassportCard = () => {
     isLoading: isBalanceOfLoading,
     refetch: refetchBalanceOf,
   } = useContractRead({
-    address: "0x0e24f4af1d5cd7fac0a96649511a15439d7e0c04",
+    address: import.meta.env.VITE_L1PASSPORTNFT_CONTRACT_ADDRESS_GOERLI,
     abi: L1PassportNFTAbi,
     chainId: goerli.id,
     functionName: "balanceOf",
@@ -104,7 +104,7 @@ export const L1NFTPassportCard = () => {
     isLoading,
     refetch: refetchTokenUri,
   } = useContractRead({
-    address: "0x0e24f4af1d5cd7fac0a96649511a15439d7e0c04",
+    address: import.meta.env.VITE_L1PASSPORTNFT_CONTRACT_ADDRESS_GOERLI,
     chainId: goerli.id,
     abi: L1PassportNFTAbi,
     functionName: "tokenURI",

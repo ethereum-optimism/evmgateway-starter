@@ -21,7 +21,7 @@ const MintNFTButton = ({
 }) => {
   const { address } = useAccount();
   const { config } = usePrepareContractWrite({
-    address: "0x22299910e573ecd436f4987c75f093894904d107",
+    address: import.meta.env.VITE_L2TESTNFT_CONTRACT_ADDRESS_OP_GOERLI,
     abi: L2TestNFTAbi,
     chainId: optimismGoerli.id,
     functionName: "mintTo",
@@ -77,14 +77,14 @@ export const L2TestNFTCard = () => {
     contracts: [
       {
         abi: L2TestNFTAbi,
-        address: "0x22299910e573ecd436f4987c75f093894904d107",
+        address: import.meta.env.VITE_L2TESTNFT_CONTRACT_ADDRESS_OP_GOERLI,
         functionName: "balanceOf",
         args: [address!],
         chainId: optimismGoerli.id,
       },
       {
         abi: L2TestNFTAbi,
-        address: "0x22299910e573ecd436f4987c75f093894904d107",
+        address: import.meta.env.VITE_L2TESTNFT_CONTRACT_ADDRESS_OP_GOERLI,
         functionName: "currentTokenId",
         chainId: optimismGoerli.id,
       },

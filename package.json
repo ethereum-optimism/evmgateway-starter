@@ -3,9 +3,9 @@
   "version": "0.0.4",
   "private": true,
   "scripts": {
-    "deploy:l2-test-coin": "source .env && forge create contracts/src/L2TestCoin.sol:L2TestCoin --rpc-url $FORGE_RPC_URL_OP_GOERLI -i --etherscan-api-key $ETHERSCAN_API_KEY_OP_GOERLI --verify --constructor-args \"L2 Test Coin\" \"L2TESTCOIN\" 6",
-    "deploy:l2-test-nft": "source .env && forge create contracts/src/L2TestNFT.sol:L2TestNFT --rpc-url $FORGE_RPC_URL_OP_GOERLI -i --etherscan-api-key $ETHERSCAN_API_KEY_OP_GOERLI --verify --constructor-args \"L2 Test NFT\" \"L2TESTNFT\"",
-    "deploy:l1-passport-nft": "source .env && forge create contracts/src/L1PassportNFT.sol:L1PassportNFT --rpc-url $FORGE_RPC_URL_GOERLI -i --etherscan-api-key $ETHERSCAN_API_KEY_GOERLI --verify --constructor-args \"L1 Passport NFT\" \"L1PASSPORT\" $OP_VERIFIER_CONTRACT_ADDRESS 0x5a81f1f4d30f4153150848c31fabd0311946ed72 0x22299910e573ecd436f4987c75f093894904d107",
+    "deploy:l2-test-coin": "source .env && forge create contracts/src/L2TestCoin.sol:L2TestCoin --rpc-url $VITE_RPC_URL_OP_GOERLI -i --etherscan-api-key $ETHERSCAN_API_KEY_OP_GOERLI --verify --constructor-args \"L2 Test Coin\" \"L2TESTCOIN\" 6",
+    "deploy:l2-test-nft": "source .env && forge create contracts/src/L2TestNFT.sol:L2TestNFT --rpc-url $VITE_RPC_URL_OP_GOERLI -i --etherscan-api-key $ETHERSCAN_API_KEY_OP_GOERLI --verify --constructor-args \"L2 Test NFT\" \"L2TESTNFT\"",
+    "deploy:l1-passport-nft": "source .env && forge create contracts/src/L1PassportNFT.sol:L1PassportNFT --rpc-url $VITE_RPC_URL_GOERLI -i --etherscan-api-key $ETHERSCAN_API_KEY_GOERLI --verify --constructor-args \"L1 Passport NFT\" \"L1PASSPORT\" $OP_VERIFIER_CONTRACT_ADDRESS $VITE_L2TESTCOIN_CONTRACT_ADDRESS_OP_GOERLI $VITE_L2TESTNFT_CONTRACT_ADDRESS_OP_GOERLI",
     "dev": "vite",
     "build": "vite build",
     "build:production": "vite build",
