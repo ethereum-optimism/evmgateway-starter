@@ -64,6 +64,11 @@ The following are deployed versions of the [op-gateway](https://github.com/ensdo
 git clone https://github.com/ethereum-optimism/evmgateway-starter.git
 ```
 
+```sh
+cd evmgateway-starter
+```
+
+
 #### Specify .env
 
 1. Copy `.env.example` to `.env`.
@@ -85,7 +90,6 @@ git clone https://github.com/ethereum-optimism/evmgateway-starter.git
 1. Install the necessary node packages:
 
    ```sh
-   cd evmgateway-starter
    npm install
    ```
 
