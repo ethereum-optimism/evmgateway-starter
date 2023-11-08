@@ -1,12 +1,14 @@
 # contracts
 
 Add contracts and scripts here!
-If you also add your contract to `wagmi.config.ts` react hooks for the frontend
-will automatically be generated.
 
-## src/AttestationStation
+## src/L2TestCoin.sol
 
-Attestation station contract from https://github.com/ethereum-optimism/optimism/blob/develop/packages/contracts-periphery/contracts/universal/op-nft/AttestationStation.sol 
+Simple ERC20 contract based on `solmate` meant to be deployed on the L2
+
+## src/L2TestNFT.sol
+
+Simple ERC721 contract based on `solmate` meant to be deployed on the L2
 
 ## script/AttestationStation.s.sol
 

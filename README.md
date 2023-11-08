@@ -1,10 +1,14 @@
-<div align="center">
-  <a href="https://optimism.io"><img alt="Optimism" src="https://raw.githubusercontent.com/ethereum-optimism/brand-kit/main/assets/svg/OPTIMISM-R.svg" width=320></a>
-  <br />
-  <br />
-</div>
+# OP-Goerli Passport NFT (evmgateway example app)
 
-This is a [Optimism](https://github.com/ethereum-optimism) + [wagmi](https://wagmi.sh) + [Foundry](https://book.getfoundry.sh/) + [Rainbowkit](https://www.rainbowkit.com/) + [Vite](https://vitejs.dev/) project originally bootstrapped with [`create-wagmi`](https://github.com/wagmi-dev/wagmi/tree/main/packages/create-wagmi) built with ❤️ for hackers.
+This is an example app that uses Ethereum Name Service (ENS)'s [evmgateway](https://github.com/ensdomains/evmgateway).
+
+## What is OP-Goerli Passport NFT
+
+The Passport NFT is as non-transferrable NFT on L1 (Goerli) that dynamically updates based on some of the owner's actions on L2 (OP Goerli).
+
+## What is [evmgateway](https://github.com/ensdomains/evmgateway)?
+
+EVM Gateway is a [CCIP-Read](https://eips.ethereum.org/EIPS/eip-3668) gateway that allows L1 smart contracts to fetch and verify state from L2s. Read more about it [here](https://github.com/ensdomains/evmgateway#evm-ccip-read-gateway).
 
 ## Who is this for?
 
@@ -14,7 +18,12 @@ This starter is a great choice for any of the following groups:
 - Hackers hacking on the [Attestation Station](https://community.optimism.io/docs/identity/build/)
 - Hackers interested in using [the most modern and robust web3 full stack development stack](https://twitter.com/gakonst/status/1630038261941796866)
 
-## Getting Started
+### OP-Gateway and OP-Verifier deployments
+
+| **chain**   | **op-gateway service**                                                  | op-verifier contract (on Goerli)                                                                                             |
+| ----------- | ----------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------- |
+| OP Goerli   | https://op-goerli.op-gateway.transientdomain.xyz/{sender}/{data}.json   | [0xe58448bfc2fa097953e800e0af0b0a5257ecc4b1](https://goerli.etherscan.io/address/0xe58448bfc2fa097953e800e0af0b0a5257ecc4b1) |
+| Base Goerli | https://base-goerli.op-gateway.transientdomain.xyz/{sender}/{data}.json | [0x7e2f9c4a1467e8a41e1e8283ba3ba72e3d92f6b8](https://goerli.etherscan.io/address/0x7e2f9c4a1467e8a41e1e8283ba3ba72e3d92f6b8) |
 
 ### Install Node
 
@@ -169,22 +178,3 @@ Now that your contract has been deployed to Anvil, you can start playing around 
 Head to [localhost:5173](http://localhost:5173) in your browser, connect your wallet, and try increment a counter on the Foundry chain. Use the generated code in `src/generated.ts` to do it and follow the [Attestooooor](https://github.com/ethereum-optimism/optimism-starter/blob/main/src/components/Attestoooooor.tsx) component as an example
 
 > Tip: If you import an Anvil private key into your browser wallet (MetaMask, Coinbase Wallet, etc) – you will have 10,000 ETH to play with 😎. The private key is found in the terminal under "Private Keys" when you start up an Anvil instance with `npm run dev:foundry`.
-
-## Alternatives
-
-Looking to use burner wallets? Prefer hardhat? Prefer NEXT.js? Check out these amazing alternatives:
-
-- [create wagmi cli](https://wagmi.sh/cli/create-wagmi) - A flexible cli with many templates (this starterkit was started from vite-react-cli-foundry)
-- [scaffold-eth](https://github.com/scaffold-eth/se-2) - The new 2nd version of a popular NEXT.js based starter including hardhat, burner wallets, great documentation, and an active telegram for support
-- [Awesome wagmi](https://github.com/wagmi-dev/awesome-wagmi#templates) - Has other alternative examples
-- [Create Eth App](https://usedapp-docs.netlify.app/docs/Getting%20Started/Create%20Eth%20App) - Uses a wagmi alternative called useDapp that is used at OP Labs
-
-## Learn more
-
-To learn more about [Optimism](https://optimism.io), [Vite](https://vitejs.dev/), [Foundry](https://book.getfoundry.sh/), [Rainbow kit](https://www.rainbowkit.com/) or [wagmi](https://wagmi.sh), check out the following resources:
-
-- [Foundry Documentation](https://book.getfoundry.sh/) – learn more about the Foundry stack (Anvil, Forge, etc).
-- [wagmi Documentation](https://wagmi.sh) – learn about wagmi Hooks and API.
-- [wagmi Examples](https://wagmi.sh/examples/connect-wallet) – a suite of simple examples using wagmi.
-- [@wagmi/cli Documentation](https://wagmi.sh/cli) – learn more about the wagmi CLI.
-- [Vite Documentation](https://vitejs.dev/) – learn about Vite features and API.
