@@ -1,6 +1,8 @@
 # OP-Goerli Passport NFT (evmgateway example app)
 
-This is an example app that uses Ethereum Name Service (ENS)'s [evmgateway](https://github.com/ensdomains/evmgateway). Check it out at https://evmgateway-starter.vercel.app/
+This is an example app that uses Ethereum Name Service (ENS)'s [evmgateway](https://github.com/ensdomains/evmgateway). 
+
+Check it out at https://evmgateway-starter.vercel.app/
 
 ## What is OP-Goerli Passport NFT
 
