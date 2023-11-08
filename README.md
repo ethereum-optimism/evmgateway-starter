@@ -4,7 +4,7 @@ This is an example app that uses Ethereum Name Service (ENS)'s [evmgateway](http
 
 ## What is OP-Goerli Passport NFT
 
-The Passport NFT is as non-transferrable NFT on L1 (Goerli) that dynamically updates based on some of the owner's actions on L2 (OP Goerli).
+The Passport NFT is as non-transferrable NFT on L1 (Goerli) that dynamically updates based on some of the owner's actions on L2 (OP Goerli). The NFT's `tokenURI` function performs two subsequent CCIP-Reads, and returns a svg string that encodes the read results.
 
 ## What is [evmgateway](https://github.com/ensdomains/evmgateway)?
 
@@ -12,18 +12,44 @@ EVM Gateway is a [CCIP-Read](https://eips.ethereum.org/EIPS/eip-3668) gateway th
 
 ## Who is this for?
 
-This starter is a great choice for any of the following groups:
+- Hackers hacking on [evmgateway](https://github.com/ensdomains/evmgateway)
+- Hackers interested in learning more about how an OP Stack chain works
+- Hackers interested in learning more about how CCIP-Read works
 
-- Hackers hacking on [Optimism](https://www.optimism.io/)
-- Hackers hacking on the [Attestation Station](https://community.optimism.io/docs/identity/build/)
-- Hackers interested in using [the most modern and robust web3 full stack development stack](https://twitter.com/gakonst/status/1630038261941796866)
+## How does it work?
+
+Check out the contract here
+
+- `L2TestCoin` is deployed on OP Goerli
+- `L2TestNFT` is deployed on OP Goerli
+- `L1PassportNFT` is deployed on Goerli
+
+1. `tokenURI` function on the `L1PassportNFT` contract performs a CCIP-Read on the `L2TestCoin`'s `totalSupply` and `balanceOf` storage slots for the current owner of the NFT.
+2. When the CCIP-Read in step 1 succeeds, `L1PassportNFT`'s `tokenURIFetchL2TestCoinBalanceCallback` is called
+3. `tokenURIFetchL2TestCoinBalanceCallback` performs another CCIP-Read on `L2TestNFT`'s `_balanceOf`
+4. When the CCIP-Read in step 3 succeeds, `L1PassportNFT`'s `tokenURIFetchL2TestNFTBalanceCallback` is called
+5. `tokenURIFetchL2TestNFTBalanceCallback` takes the fetch results from the last 2 CCIP-Read calls, and then generates an svg string that displays the user's `L2TestCoin` and `L2TestNFT` balance.
+
+## Deployments
 
 ### OP-Gateway and OP-Verifier deployments
+
+The following are deployed versions of the [op-gateway](https://github.com/ensdomains/evmgateway/tree/main/op-gateway) with `delay = 0` and their corresponding [op-verifier](https://github.com/ensdomains/evmgateway/tree/main/op-verifier) contracts
 
 | **chain**   | **op-gateway service**                                                  | op-verifier contract (on Goerli)                                                                                             |
 | ----------- | ----------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------- |
 | OP Goerli   | https://op-goerli.op-gateway.transientdomain.xyz/{sender}/{data}.json   | [0xe58448bfc2fa097953e800e0af0b0a5257ecc4b1](https://goerli.etherscan.io/address/0xe58448bfc2fa097953e800e0af0b0a5257ecc4b1) |
 | Base Goerli | https://base-goerli.op-gateway.transientdomain.xyz/{sender}/{data}.json | [0x7e2f9c4a1467e8a41e1e8283ba3ba72e3d92f6b8](https://goerli.etherscan.io/address/0x7e2f9c4a1467e8a41e1e8283ba3ba72e3d92f6b8) |
+
+### Contract deployments
+
+| **contract**  | **chain** | **address**                                                                                                                           |
+| ------------- | --------- | ------------------------------------------------------------------------------------------------------------------------------------- |
+| L1PassportNFT | Goerli    | [0x0e24f4af1d5cd7fac0a96649511a15439d7e0c04](https://goerli.etherscan.io/address/0x0e24f4af1d5cd7fac0a96649511a15439d7e0c04)          |
+| L2TestNFT     | OP Goerli | [0x22299910e573ecd436f4987c75f093894904d107](https://goerli-optimism.etherscan.io/address/0x22299910e573ecd436f4987c75f093894904d107) |
+| L2TestCoin    | OP Goerli | [0x5a81f1f4d30f4153150848c31fabd0311946ed72](https://goerli-optimism.etherscan.io/address/0x5a81f1f4d30f4153150848c31fabd0311946ed72) |
+
+## Getting Started
 
 ### Install Node
 
@@ -110,24 +136,6 @@ See below for general usage instructions or [FAQ](./FAQ.md) for answers to gener
 
 - [Where to get goerli eth]().
 - [How to deploy a public version of your app](./FAQ.md#how-do-i-deploy-this).
-
-## Generate ABIs & React Hooks
-
-This project comes with `@wagmi/cli` built-in, which means you can generate wagmi-compatible (type safe) ABIs & React Hooks straight from the command line.
-
-To generate ABIs & Hooks, follow the steps below.
-
-## Generate code
-
-To generate ABIs & React Hooks from your Foundry project (in `./contracts`), you can run:
-
-```sh
-npm run wagmi
-```
-
-This will use the wagmi config (`wagmi.config.ts`) to generate a `src/generated.ts` file which will include your ABIs & Hooks that you can start using in your project.
-
-[Here is an example](https://github.com/ethereum-optimism/optimism-starter/blob/main/src/components/Attestoooooor.tsx#L77) of Hooks from the generated file being used.
 
 ## Deploying Contracts
 
