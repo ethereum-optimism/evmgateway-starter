@@ -18,7 +18,7 @@ EVM Gateway is a [CCIP-Read](https://eips.ethereum.org/EIPS/eip-3668) gateway th
 
 ## How does it work?
 
-Check out the contract here
+Check out the contract [here](https://github.com/ethereum-optimism/evmgateway-starter/blob/main/contracts/src/L1PassportNFT.sol)
 
 - `L2TestCoin` is deployed on OP Goerli
 - `L2TestNFT` is deployed on OP Goerli
