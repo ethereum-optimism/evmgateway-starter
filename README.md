@@ -155,3 +155,11 @@ You will need to install [Foundry](https://book.getfoundry.sh/getting-started/in
    ```sh
    npm run deploy:l1-passport-nft
    ```
+
+
+## Built using
+- [thorin (ENS Design System)](https://thorin.ens.domains/)
+- [wagmi](https://wagmi.sh/)
+- [rainbowkit](https://www.rainbowkit.com/)
+- [vite](https://vitejs.dev/)
+- [foundry](https://getfoundry.sh/)
