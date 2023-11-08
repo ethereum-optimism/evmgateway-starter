@@ -6,6 +6,7 @@ import { L1Panel } from "./components/L1Panel";
 import { L2Panel } from "./components/L2Panel";
 
 import "./App.css";
+import { GitHubLink } from "./components/GitHubLink";
 
 export function App() {
   /**
@@ -19,6 +20,7 @@ export function App() {
       <ThorinGlobalStyles />
       <div
         style={{
+          position: "relative",
           padding: 20,
           height: "100%",
           display: "flex",
@@ -26,6 +28,17 @@ export function App() {
           gap: 20,
         }}
       >
+        <div
+          style={{
+            position: "absolute",
+            top: 20,
+            right: 20,
+            width: 24,
+            height: 24,
+          }}
+        >
+          <GitHubLink />
+        </div>
         <div style={{ display: "flex", justifyContent: "center" }}>
           <Heading>OP Goerli Passport using EVMGateway</Heading>
         </div>
