@@ -3,6 +3,7 @@ import { goerli, optimismGoerli } from "wagmi/chains";
 import { Banner, Spinner } from "@ensdomains/thorin";
 import { useState } from "react";
 import { useLatestAvailableL2BlockNumberOnL1 } from "../lib/useLatestAvailableL2BlockNumberOnL1";
+import { L2OutputOracleAddress } from "../constants/L2OutputOracleAddress";
 
 const LastUpdatedAt = ({ date }: { date?: Date }) => {
   if (!date) {
@@ -59,7 +60,7 @@ export const LatestL2OutputOracleDisplay = () => {
       as="a"
       target="_blank"
       rel="noopener noreferrer"
-      href={`${goerli.blockExplorers.default.url}/address/0xE6Dfba0953616Bacab0c9A8ecb3a9BBa77FC15c0`}
+      href={`${goerli.blockExplorers.default.url}/address/${L2OutputOracleAddress}`}
     >
       <LatestL2OutputOracleContent />
     </Banner>

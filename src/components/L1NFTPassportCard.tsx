@@ -15,6 +15,7 @@ import { L1NFTPassportViewer } from "./L1NFTPassportViewer";
 import { hexToBigInt } from "viem";
 import { L2OutputOracleAbi } from "../constants/L2OutputOracleAbi";
 import { SwitchNetworkButton } from "./SwitchNetworkButton";
+import { L2OutputOracleAddress } from "../constants/L2OutputOracleAddress";
 
 const MintL1PassportNFTButton = ({ onSuccess }: { onSuccess: () => void }) => {
   const { address } = useAccount();
@@ -114,7 +115,7 @@ export const L1NFTPassportCard = () => {
 
   useContractEvent({
     abi: L2OutputOracleAbi,
-    address: "0xE6Dfba0953616Bacab0c9A8ecb3a9BBa77FC15c0",
+    address: L2OutputOracleAddress,
     eventName: "OutputProposed",
     chainId: goerli.id,
     listener: () => {
@@ -131,7 +132,7 @@ export const L1NFTPassportCard = () => {
       }}
     >
       <Typography fontVariant="headingFour">
-        L1PassportNFT (Soulbound)
+        L1PassportNFT (Non-transferrable)
       </Typography>
       <Typography fontVariant="body">
         NFT will update dynamically as you mint new NFTs/Coins on{" "}

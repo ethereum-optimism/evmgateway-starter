@@ -7,6 +7,7 @@ import { L2Panel } from "./components/L2Panel";
 
 import "./App.css";
 import { GitHubLink } from "./components/GitHubLink";
+import { DirectionsBanner } from "./components/DirectionsBanner";
 
 export function App() {
   /**
@@ -42,25 +43,41 @@ export function App() {
         <div style={{ display: "flex", justifyContent: "center" }}>
           <Heading>OP Goerli Passport using EVMGateway</Heading>
         </div>
+        <div
+          style={{
+            display: "flex",
+            justifyContent: "center",
+          }}
+        >
+          <DirectionsBanner />
+        </div>
         <div style={{ display: "flex", justifyContent: "center" }}>
           <ConnectButton />
         </div>
         {isConnected && (
           <div
             style={{
-              flex: 1,
               display: "flex",
+              flexDirection: "column",
               gap: 20,
             }}
           >
-            <L1Panel />
             <div
               style={{
-                width: 1,
-                backgroundColor: "#e0e0e0",
+                flex: 1,
+                display: "flex",
+                gap: 20,
               }}
-            />
-            <L2Panel />
+            >
+              <L1Panel />
+              <div
+                style={{
+                  width: 1,
+                  backgroundColor: "#e0e0e0",
+                }}
+              />
+              <L2Panel />
+            </div>
           </div>
         )}
       </div>
