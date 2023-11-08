@@ -1,5 +1,8 @@
 # OP-Goerli Passport NFT (evmgateway example app)
 
+<img width="299" alt="Screenshot 2023-11-07 at 11 52 37 PM" src="https://github.com/ethereum-optimism/evmgateway-starter/assets/9677071/02e9e4b3-f427-432e-b355-3351d011e0ba">
+
+
 This is an example app that uses Ethereum Name Service (ENS)'s [evmgateway](https://github.com/ensdomains/evmgateway). 
 
 Check it out at https://evmgateway-starter.vercel.app/
